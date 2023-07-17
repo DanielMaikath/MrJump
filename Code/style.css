@@ -11,3 +11,10 @@
     position: absolute;
     background-color: blue;
 }
+
+.platform{
+    width: 100px;
+    height: 25px;
+    background-color: red ;
+    position: absolute;
+}

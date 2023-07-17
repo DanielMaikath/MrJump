@@ -26,7 +26,7 @@ function Player(x,y,parent){
       }
       //Esta es la parte del movimiento vertical
       if(self.y == 750){self.speedY = 38}
-      console.log(self.y)
+      console.log(self.speedY)
       self.y = self.y - self.speedY
       if(self.y <= 750 && self.y >=0)
       self.sprite.style.top = self.y + 'px' 
