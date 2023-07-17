@@ -8,7 +8,8 @@ function Player(x,y,parent){
     this.direction = 0
     this.height = 50
     this.width = 50
-    this.speed = 2
+    this.speedX = 2
+    this.speedY = 38
     this.sprite = document.createElement("div")
 
     this.insertPlayer = function () { // Función encargada de insertar al player en el DOM
@@ -18,11 +19,18 @@ function Player(x,y,parent){
         parent.appendChild(this.sprite)
       }
     this.move = function(){ // Función encargada de mover al jugador horizontalmente
-      console.log(self.x)
-      self.x = self.x + self.speed * self.direction
+      //Esta es la parte de movimiento horizontal
+      self.x = self.x + self.speedX * self.direction
       if(self.x <= 450 && self.x >=0){
       self.sprite.style.left = self.x + 'px' 
-    }
+      }
+      //Esta es la parte del movimiento vertical
+      if(self.y == 750){self.speedY = 38}
+      console.log(self.y)
+      self.y = self.y - self.speedY
+      if(self.y <= 750 && self.y >=0)
+      self.sprite.style.top = self.y + 'px' 
+      self.speedY -= 2
     }
 
 }
