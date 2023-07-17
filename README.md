@@ -1,3 +1,3 @@
 # MrJump
 
-Estás peresenciando el espectacular videojuego conocido como MrJump.
+Estás presenciando el espectacular videojuego conocido como MrJump. Dios que bueno es
