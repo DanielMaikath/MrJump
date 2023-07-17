@@ -27,8 +27,9 @@ function start(){
 start()
 
 //Aleatoridad de los enemigos
-
-
+function enemyIntervals(){
+    var random = Math.floor(Math.random() * 10)
+}
 console.log(player)
 
 

@@ -13,6 +13,6 @@ function Platform(x,y,parent){
         this.sprite.style.top = this.y + 'px'
         parent.appendChild(this.sprite)
       }
-    }
+    } 
 
     export{Platform}
