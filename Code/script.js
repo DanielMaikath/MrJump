@@ -1,7 +1,8 @@
 import { Player } from "./player.js"
+import { Platform} from "./platform.js"
 const board = document.getElementById("board")
 const player = new Player(225,750,board)
-
+const platform = new Platform(150, 500, board)
 
 
 window.addEventListener("keydown",function(e){
@@ -17,16 +18,16 @@ window.addEventListener("keydown",function(e){
 
 })
 
-
-
-
-
 //Función que comienza el juego
 function start(){
     player.insertPlayer()
+    platform.insertPlatform()
     let timerId = setInterval(player.move,16)
 }
 start()
+
+//Aleatoridad de los enemigos
+
 
 console.log(player)
 
