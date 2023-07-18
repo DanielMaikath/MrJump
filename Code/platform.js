@@ -4,9 +4,9 @@ function Platform(x, y, parent, player) {
   var self = this
   this.x = x;
   this.y = y;
-  this.direction = 0
-  this.height = 100
-  this.width = 25
+  this.direction = 0 
+  this.height = 25 
+  this.width = 100
   this.sprite = document.createElement("div")
 
   this.insertPlatform = function () {
