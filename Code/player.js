@@ -25,15 +25,15 @@ function Player(x, y, parent) {
       self.sprite.style.left = self.x + 'px'
     }
     //Esta es la parte del movimiento vertical
-    if (self.y >= 750) {
+    if (self.y >= 750) { //toca el suelo
       self.speedY = 38
     }
-    if (self.collition == true) {
+    if (self.collition == true) { //toca la plataforma
       self.speedY = 38
       self.collition = false
     }
 
-    if (self.collition == false) {
+    if (self.collition == false) { //no está tocando ninguna plataforma
       self.y = self.y - self.speedY
       if (self.y <= 750 && self.y >= 0) {
         self.sprite.style.top = self.y + 'px'

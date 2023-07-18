@@ -24,7 +24,6 @@ function Platform(x, y, parent, player) {
       this.x + this.width >= player.x &&
       this.x <= player.x + player.width
     ) {
-      console.log("ouch")
   return true
   }
 }

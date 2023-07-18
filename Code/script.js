@@ -3,6 +3,8 @@ import { Platform} from "./platform.js"
 const board = document.getElementById("board")
 const player = new Player(225,750,board)
 const platform = new Platform(150, 500, board, player)
+const platform2 = new Platform(250,200,board,player)
+let timerId 
 
 
 window.addEventListener("keydown",function(e){
@@ -15,14 +17,19 @@ window.addEventListener("keydown",function(e){
             break;
     }
 })
+window.addEventListener("keyup",function(e){
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        player.direction = 0 //Al levantar la tecla correspondiente, dejamos de movernos
+      }
+})
 
 //Función que comienza el juego
 function gameLoop(){
-   
-    if(platform.checkCollitions()){
+    player.move()
+    if(platform.checkCollitions() || platform2.checkCollitions()){
         player.collition = true
     }
-        player.move()
+        
         
 }
 
@@ -31,10 +38,11 @@ function gameLoop(){
 function start(){
     player.insertPlayer()
     platform.insertPlatform()
-    let timerId = setInterval(gameLoop,16)
+    platform2.insertPlatform()
+    timerId = setInterval(gameLoop,32)
 }
 start()
 
-console.log(player)
+
 
 
