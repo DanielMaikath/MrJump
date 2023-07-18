@@ -9,6 +9,7 @@ function Player(x, y, parent) {
   this.width = 50
   this.speedX = 2
   this.speedY = 38
+  this.collition = false
   this.sprite = document.createElement("div")
 
   this.insertPlayer = function () { // Función encargada de insertar al player en el DOM
@@ -25,9 +26,16 @@ function Player(x, y, parent) {
     }
     //Esta es la parte del movimiento vertical
     if (self.y == 750) { self.speedY = 38 }
-    self.y = self.y - self.speedY
-    if (self.y <= 750 && self.y >= 0) {
-      self.sprite.style.top = self.y + 'px'
+    if (self.collition == true) {
+      self.speedY = 38
+      self.collition = false
+    }
+
+    if (self.collition == false) {
+      self.y = self.y - self.speedY
+      if (self.y <= 750 && self.y >= 0) {
+        self.sprite.style.top = self.y + 'px'
+      }
     }
     self.speedY -= 2
   }

@@ -18,12 +18,15 @@ window.addEventListener("keydown",function(e){
 
 //Función que comienza el juego
 function gameLoop(){
-    if (!platform.checkCollitions()){
-        player.move()
-    } else {
-        player.speedY = 38
+   
+    if(platform.checkCollitions()){
+        player.collition = true
     }
+        player.move()
+        
 }
+
+
 
 function start(){
     player.insertPlayer()
