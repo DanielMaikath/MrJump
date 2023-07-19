@@ -6,6 +6,7 @@ const platform = new Platform(150, 500, board, player)
 const platform2 = new Platform(250, 200, board, player)
 let platforms = [platform, platform2]
 let timerId //Variable global que almacena el id del intervalo
+var shouldCreatePlatform = true
 
 //Función que recoge el evento para mover al jugador horizontalmente, mediante las flechas izquierda y derecha
 window.addEventListener("keydown", function (e) {
@@ -30,10 +31,11 @@ function gameLoop() {
     player.move()
     console.log(platforms)
     if (player.y <= 200) {
-       platformScroll()
-    }
+        platformScroll()
+        shouldCreatePlatform = true
+    } 
     if (player.y > 350) {
-        if (platform.shouldScroll == false) {
+        if(shouldCreatePlatform){
             createPlatform()
         }
         scrollStatus()
@@ -53,6 +55,7 @@ function createPlatform() {
     let platformLocal = new Platform(cordX, cordY, board, player)
     platformLocal.insertPlatform()
     platforms.push(platformLocal)
+    shouldCreatePlatform = false
 }
 
 
@@ -75,11 +78,11 @@ function platformCollition() {
 
 //Funcion que haga scroll de todas las plataformas
 function platformScroll() {
-    
+
     platforms.forEach(function (plataforma) {
-       if(plataforma.scroll()){
-        platforms.shift()
-       }
+        if (plataforma.scroll()) {
+            platforms.shift()
+        }
 
     })
 }
