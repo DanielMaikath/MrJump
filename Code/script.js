@@ -38,7 +38,7 @@ function gameLoop() {
         }
         scrollStatus()
     }
-    if (platformCollition()) { // Cambiar esot
+    if (platformCollition()) { // Cambiar esto
         player.collition = true
     }
 
