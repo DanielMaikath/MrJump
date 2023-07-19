@@ -9,7 +9,7 @@ function Player(x, y, parent) {
   this.width = 50
   this.speedX = 8 //Velocidad a la que se mueve el jugador horizontalmente en pixeles
   this.speedY = 38//Velocidad a la que se mueve el jugador verticalmente en pixeles
-  this.collition = false // Esta variable detecta si el jugador colisiona con la plataforma
+  this.collition = false // Variable que detecta si el jugador colisiona con la plataforma
   this.sprite = document.createElement("div")
 
   this.insertPlayer = function () { // Función encargada de insertar al player en el DOM

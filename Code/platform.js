@@ -7,6 +7,7 @@ function Platform(x, y, parent, player) {
   this.direction = 0 //Dirección en la que se mueve horizontalmente , +1 es a la derecha y -1 es a la izquierda
   this.height = 25 
   this.width = 100
+  this.shouldScroll = true
   this.sprite = document.createElement("div")
 
   //Función que inserta la plataforma en el DOM
@@ -28,6 +29,21 @@ function Platform(x, y, parent, player) {
   return true
   }
 }
+
+  this.scroll = function(){ // Función que se encarga de scrollear la pantalla
+    if(self.shouldScroll){
+    self.y = self.y + 200 
+    self.sprite.style.top = this.y + 'px'
+    self.shouldScroll = false
+  }
+  if(self.y >= 800){
+    parent.removeChild(this.sprite)
+  }
+  }
+
+
+
+
 }
 
 
