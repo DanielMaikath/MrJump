@@ -6,6 +6,7 @@ const platform = new Platform(150, 500, board, player)
 const platform2 = new Platform(250, 200, board, player)
 let platforms = [platform, platform2]
 let timerId //Variable global que almacena el id del intervalo
+var shouldCreatePlatform = true
 
 //Función que recoge el evento para mover al jugador horizontalmente, mediante las flechas izquierda y derecha
 window.addEventListener("keydown", function (e) {
@@ -28,17 +29,17 @@ window.addEventListener("keyup", function (e) {
 //Función que se repite indefinidamente, con 
 function gameLoop() {
     player.move()
-    console.log(platforms)
     if (player.y <= 200) {
-       platformScroll()
-    }
+        platformScroll()
+        shouldCreatePlatform = true
+    } 
     if (player.y > 350) {
-        if (platform.shouldScroll == false) {
+        if(shouldCreatePlatform){
             createPlatform()
         }
         scrollStatus()
     }
-    if (platformCollition()) { // Cambiar esto
+    if (platformCollition()) { 
         player.collition = true
     }
 
@@ -47,12 +48,19 @@ function gameLoop() {
 
 function createPlatform() {
     let cordX = Math.floor(Math.random() * 400)
-    let cordY = Math.floor(Math.random() * 350)
-    console.log("X :" + cordX)
-    console.log("Y :" + cordY)
+    let cordY = Math.floor(Math.random() * (300) + 100 )
+    // let cordXTop = Math.floor(Math.random() * 400)
+    // let cordYTop = Math.floor(Math.random() * (100)  )
     let platformLocal = new Platform(cordX, cordY, board, player)
+    console.log(platformLocal)
+    // let platformTop = new Platform(cordXTop, cordYTop, board, player)
+    // platformTop.insertPlatform()
     platformLocal.insertPlatform()
     platforms.push(platformLocal)
+    console.log(platforms)
+    // platforms.push(platformTop)
+    shouldCreatePlatform = false
+    console.log("created")
 }
 
 
@@ -62,7 +70,6 @@ function platformCollition() {
     platforms.forEach(function (plataforma) {
         arr.push(plataforma.checkCollitions())
     })
-    console.log(arr.includes(true))
     return arr.includes(true)
 
 
@@ -75,11 +82,10 @@ function platformCollition() {
 
 //Funcion que haga scroll de todas las plataformas
 function platformScroll() {
-    
     platforms.forEach(function (plataforma) {
-       if(plataforma.scroll()){
-        platforms.shift()
-       }
+        if (plataforma.scroll()) {
+            platforms = platforms.splice(0 , 1)
+        }
 
     })
 }
