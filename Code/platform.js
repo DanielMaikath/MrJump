@@ -35,11 +35,15 @@ function Platform(x, y, parent, player) {
   this.scroll = function () { // Función que se encarga de scrollear la pantalla
     if (self.shouldScroll) {
       self.y = self.y + 200
-      self.sprite.style.top = this.y + 'px'
+      self.sprite.style.top = self.y + 'px'
       self.shouldScroll = false
-    }
+    } 
+    // if (player.y <= 0){
+    //   self.y = self.y + 200
+    //   self.sprite.style.top = this.y + 'px'
+    // }
     if (self.y >= 800) {
-      parent.removeChild(this.sprite)
+      parent.removeChild(self.sprite)
       return true
     }else{
       return false

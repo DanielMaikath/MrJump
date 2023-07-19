@@ -80,10 +80,9 @@ function platformCollition() {
 
 //Funcion que haga scroll de todas las plataformas
 function platformScroll() {
-
     platforms.forEach(function (plataforma) {
         if (plataforma.scroll()) {
-            platforms.shift()
+            platforms = platforms.splice(0 , 1)
         }
 
     })
