@@ -41,7 +41,7 @@ function Player(x, y, parent) {
     }
     self.speedY -= 2
   }
-  //Colisiones
+
 
 
 }
