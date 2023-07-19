@@ -49,12 +49,15 @@ function gameLoop() {
 
 function createPlatform() {
     let cordX = Math.floor(Math.random() * 400)
-    let cordY = Math.floor(Math.random() * 350)
-    console.log("X :" + cordX)
-    console.log("Y :" + cordY)
+    let cordY = Math.floor(Math.random() * (300) + 100 )
+    let cordXTop = Math.floor(Math.random() * 400)
+    let cordYTop = Math.floor(Math.random() * (100)  )
     let platformLocal = new Platform(cordX, cordY, board, player)
+    let platformTop = new Platform(cordXTop, cordYTop, board, player)
+    platformTop.insertPlatform()
     platformLocal.insertPlatform()
     platforms.push(platformLocal)
+    platforms.push(platformTop)
     shouldCreatePlatform = false
 }
 
@@ -65,7 +68,6 @@ function platformCollition() {
     platforms.forEach(function (plataforma) {
         arr.push(plataforma.checkCollitions())
     })
-    console.log(arr.includes(true))
     return arr.includes(true)
 
 
