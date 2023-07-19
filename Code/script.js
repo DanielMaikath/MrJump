@@ -29,7 +29,6 @@ window.addEventListener("keyup", function (e) {
 //Función que se repite indefinidamente, con 
 function gameLoop() {
     player.move()
-    console.log(platforms)
     if (player.y <= 200) {
         platformScroll()
         shouldCreatePlatform = true
@@ -40,7 +39,7 @@ function gameLoop() {
         }
         scrollStatus()
     }
-    if (platformCollition()) { // Cambiar esot
+    if (platformCollition()) { 
         player.collition = true
     }
 
@@ -50,15 +49,18 @@ function gameLoop() {
 function createPlatform() {
     let cordX = Math.floor(Math.random() * 400)
     let cordY = Math.floor(Math.random() * (300) + 100 )
-    let cordXTop = Math.floor(Math.random() * 400)
-    let cordYTop = Math.floor(Math.random() * (100)  )
+    // let cordXTop = Math.floor(Math.random() * 400)
+    // let cordYTop = Math.floor(Math.random() * (100)  )
     let platformLocal = new Platform(cordX, cordY, board, player)
-    let platformTop = new Platform(cordXTop, cordYTop, board, player)
-    platformTop.insertPlatform()
+    console.log(platformLocal)
+    // let platformTop = new Platform(cordXTop, cordYTop, board, player)
+    // platformTop.insertPlatform()
     platformLocal.insertPlatform()
     platforms.push(platformLocal)
-    platforms.push(platformTop)
+    console.log(platforms)
+    // platforms.push(platformTop)
     shouldCreatePlatform = false
+    console.log("created")
 }
 
 
