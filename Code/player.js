@@ -7,7 +7,7 @@ function Player(x, y, parent) {
   this.direction = 0
   this.height = 50
   this.width = 50
-  this.speedX = 15 //Velocidad a la que se mueve el jugador horizontalmente en pixeles
+  this.speedX = 10//Velocidad a la que se mueve el jugador horizontalmente en pixeles
   this.speedY = 30//Velocidad a la que se mueve el jugador verticalmente en pixeles
   this.collition = false // Variable que detecta si el jugador colisiona con la plataforma
   this.playerIsOnTop = false

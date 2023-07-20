@@ -50,7 +50,15 @@ function gameLoop() {
         }
         scrollStatus()
     }
-
+    if (player.y <= 0 && player.speedY > 0 && top) {
+        scrollStatus()
+        createPlatform()
+        platformScroll()
+        top = false
+    }
+    if (player.speedY < 0) {
+        top = true
+    }
 }
 
 function createPlatform() {
