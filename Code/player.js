@@ -8,8 +8,9 @@ function Player(x, y, parent) {
   this.height = 50
   this.width = 50
   this.speedX = 15 //Velocidad a la que se mueve el jugador horizontalmente en pixeles
-  this.speedY = 38//Velocidad a la que se mueve el jugador verticalmente en pixeles
+  this.speedY = 30//Velocidad a la que se mueve el jugador verticalmente en pixeles
   this.collition = false // Variable que detecta si el jugador colisiona con la plataforma
+  this.playerIsOnTop = false
   this.isDead = false //Variable que controla si el player se estampó
   this.sprite = document.createElement("div")
 
@@ -30,7 +31,7 @@ function Player(x, y, parent) {
       self.isDead = true
     }
     if (self.collition == true) { //toca la plataforma
-      self.speedY = 38
+      self.speedY = 30
       self.collition = false
     }
 
