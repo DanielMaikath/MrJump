@@ -24,7 +24,8 @@ function Platform(x, y, parent, player) {
       this.y + this.height >= player.y &&
       this.y <= player.y + player.height &&
       this.x + this.width >= player.x &&
-      this.x <= player.x + player.width
+      this.x <= player.x + player.width &&
+      player.speedY <= 0
     ) {
       return true
     } else {
@@ -34,17 +35,18 @@ function Platform(x, y, parent, player) {
 
   this.scroll = function () { // Función que se encarga de scrollear la pantalla
     if (self.shouldScroll) {
-      self.y = self.y + 200
+      self.y = self.y + 300
       self.sprite.style.top = self.y + 'px'
       self.shouldScroll = false
     } 
-    // if (player.y <= 0){
-    //   self.y = self.y + 200
-    //   self.sprite.style.top = this.y + 'px'
-    // }
+    /*if (player.y <= 0){
+      self.y = self.y + 10
+     self.sprite.style.top = this.y + 'px'
+     }*/
     if (self.y >= 800) {
       console.log(self.sprite)
       parent.removeChild(self.sprite)
+      console.log("borrado")
       return true
     }else{
       return false

@@ -18,3 +18,22 @@
     background-color: red ;
     position: absolute;
 }
+#pantalla-inicial{
+    width: 500px;
+    height: 800px;
+    background-image: url("images/44524779-cartoon-paisaje-país-naturaleza-formato-vertical-móvil-tamaño-de-la-pantalla.webp");
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+#start{
+    width: 100px;
+    height: 50px;
+    margin : 350px 0 0 200px 
+}
+#game-over{
+    width: 500px;
+    height: 800px;
+    background-image: url("images/HD-wallpaper-game-over-2-3d-art-black-effect-glitch-glitchart-pink-white.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+}
