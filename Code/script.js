@@ -11,6 +11,7 @@ let timerId //Variable global que almacena el id del intervalo
 var shouldCreatePlatform = true
 let score = 0
 let scoreBoard = document.createElement("div")
+let top = false
 
 //Función que recoge el evento para mover al jugador horizontalmente, mediante las flechas izquierda y derecha
 window.addEventListener("keydown", function (e) {
@@ -145,6 +146,7 @@ function gameOver(){
     board.appendChild(pantalla)
     startButton.setAttribute("id","reset-button")
     startButton.innerText = "Restart"
+    scoreBoard.setAttribute("id", "score-game-over")
     pantalla.appendChild(startButton)
 }
 
