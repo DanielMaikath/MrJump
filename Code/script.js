@@ -37,9 +37,9 @@ function gameLoop() {
     if (platformCollition()) { 
         player.collition = true
     }
-   /* if(player.y <= 10){
+    /* if(player.y <= 100){
         player.playerIsOnTop = true
-    }  */
+    }  */ 
     if (player.y <= 400 ) {
         platformScroll()
         shouldCreatePlatform = true
