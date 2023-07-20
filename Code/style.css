@@ -48,3 +48,12 @@
     height: 50px;
     margin : 350px 0 0 200px 
 }
+
+#score-board{
+    position: absolute;
+   
+    width: 100px;
+    height: 50px;
+    margin: 25px 0 0 400px;
+    text-align: center;
+}
