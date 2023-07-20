@@ -48,3 +48,28 @@
     height: 50px;
     margin : 350px 0 0 200px 
 }
+
+#score-board{
+    position: absolute;
+   
+    width: 100px;
+    height: 50px;
+    margin: 25px 0 0 400px;
+    text-align: center;
+}
+
+#score-game-over{
+    color: blue;
+    font-size:xx-large;
+    text-align: center;
+    width: 200px;
+    height: 100px;
+    margin : 250px 0 0 150px;
+    position: absolute;
+    border: 1px solid red;
+    padding-top: 50px;
+
+    
+
+    
+}

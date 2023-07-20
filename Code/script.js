@@ -9,6 +9,9 @@ const pantalla = document.getElementById("pantalla-inicial")
 let platforms = [platform, platform2]
 let timerId //Variable global que almacena el id del intervalo
 var shouldCreatePlatform = true
+let score = 0
+let scoreBoard = document.createElement("div")
+let top = false
 
 //Función que recoge el evento para mover al jugador horizontalmente, mediante las flechas izquierda y derecha
 window.addEventListener("keydown", function (e) {
@@ -59,6 +62,7 @@ function gameLoop() {
     if (player.speedY < 0) {
         top = true
     }
+    scoreBoard.innerText = score++
 }
 
 function createPlatform() {
@@ -115,6 +119,10 @@ function scrollStatus() {
 startButton.addEventListener("click",function(e){
     pantalla.removeChild(e.currentTarget)
     board.removeChild(pantalla)
+    
+    scoreBoard.setAttribute("id", "score-board")
+    board.appendChild(scoreBoard)
+
     start() 
 })
 
@@ -138,6 +146,7 @@ function gameOver(){
     board.appendChild(pantalla)
     startButton.setAttribute("id","reset-button")
     startButton.innerText = "Restart"
+    scoreBoard.setAttribute("id", "score-game-over")
     pantalla.appendChild(startButton)
 }
 
@@ -152,6 +161,7 @@ function restart(){
     player.isDead = false
     platforms = [platform, platform2]
     shouldCreatePlatform = true
+    score = 0
 }
 //Función que comienza el juego
 function start() {
