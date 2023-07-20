@@ -30,3 +30,10 @@
     height: 50px;
     margin : 350px 0 0 200px 
 }
+#game-over{
+    width: 500px;
+    height: 800px;
+    background-image: url("images/HD-wallpaper-game-over-2-3d-art-black-effect-glitch-glitchart-pink-white.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+}

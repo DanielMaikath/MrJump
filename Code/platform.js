@@ -44,9 +44,9 @@ function Platform(x, y, parent, player) {
      self.sprite.style.top = this.y + 'px'
      }*/
     if (self.y >= 800) {
-     /* console.log(self.sprite)
+      console.log(self.sprite)
       parent.removeChild(self.sprite)
-      console.log("borrado")*/
+      console.log("borrado")
       return true
     }else{
       return false

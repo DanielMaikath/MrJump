@@ -1,7 +1,7 @@
 import { Player } from "./player.js"
 import { Platform } from "./platform.js"
 const board = document.getElementById("board")
-const player = new Player(450, 750, board)
+const player = new Player(225, 450, board)
 const platform = new Platform(150, 500, board, player)
 const platform2 = new Platform(250, 200, board, player)
 const startButton = document.getElementById("start")
@@ -30,6 +30,9 @@ window.addEventListener("keyup", function (e) {
 
 //Función que se repite indefinidamente, con 
 function gameLoop() {
+    if(player.isDead){
+       gameOver()
+    }
     player.move()
     if (platformCollition()) { 
         player.collition = true
@@ -50,11 +53,9 @@ function gameLoop() {
 function createPlatform() {
     let cordX = Math.floor(Math.random() * 400)
     let cordY = Math.floor(Math.random() * (300) )
-    console.log(cordY)
     // let cordXTop = Math.floor(Math.random() * 400)
     // let cordYTop = Math.floor(Math.random() * (100)  )
     let platformLocal = new Platform(cordX, cordY, board, player)
-    console.log(platformLocal)
     // let platformTop = new Platform(cordXTop, cordYTop, board, player)
     // platformTop.insertPlatform()
     platformLocal.insertPlatform()
@@ -63,7 +64,6 @@ function createPlatform() {
     // platforms.push(platformTop)
     platformLocal.shouldScroll = false
     shouldCreatePlatform = false
-    console.log("created")
 }
 
 
@@ -101,12 +101,30 @@ function scrollStatus() {
         plataforma.shouldScroll = true
     })
 }
-
+//Evento que inicia el juego
 startButton.addEventListener("click",function(e){
     pantallaInicial.removeChild(e.currentTarget)
     board.removeChild(pantallaInicial)
     start() 
 })
+
+//Funcion para borrar plataformas
+function deletePlatfoms(){
+    platforms.forEach(function(plataforma){
+        console.log(plataforma)
+        plataforma.sprite.parentNode.removeChild(plataforma.sprite)
+    })
+}
+
+
+//Funcion Game Over
+function gameOver(){
+    deletePlatfoms()
+    pantallaInicial.setAttribute("id","game-over")
+    board.appendChild(pantallaInicial)
+    clearInterval(timerId)
+    board.removeChild(player.sprite)
+}
 
 //Función que comienza el juego
 function start() {
