@@ -2,10 +2,10 @@ import { Player } from "./player.js"
 import { Platform } from "./platform.js"
 const board = document.getElementById("board")
 const player = new Player(225, 450, board)
-const platform = new Platform(150, 500, board, player)
+const platform = new Platform(150, 550, board, player)
 const platform2 = new Platform(250, 200, board, player)
 const startButton = document.getElementById("start")
-const pantallaInicial = document.getElementById("pantalla-inicial")
+const pantalla = document.getElementById("pantalla-inicial")
 let platforms = [platform, platform2]
 let timerId //Variable global que almacena el id del intervalo
 var shouldCreatePlatform = true
@@ -37,11 +37,14 @@ function gameLoop() {
     if (platformCollition()) { 
         player.collition = true
     }
-    if (player.y <= 200 ) {
+   /* if(player.y <= 10){
+        player.playerIsOnTop = true
+    }  */
+    if (player.y <= 400 ) {
         platformScroll()
         shouldCreatePlatform = true
     } 
-    if (player.y > 250) {
+    if (player.y > 400) {
         if(shouldCreatePlatform ){
             createPlatform()
         }
@@ -52,7 +55,7 @@ function gameLoop() {
 
 function createPlatform() {
     let cordX = Math.floor(Math.random() * 400)
-    let cordY = Math.floor(Math.random() * (300) )
+    let cordY = Math.floor(Math.random() * (0) )
     // let cordXTop = Math.floor(Math.random() * 400)
     // let cordYTop = Math.floor(Math.random() * (100)  )
     let platformLocal = new Platform(cordX, cordY, board, player)
@@ -60,9 +63,8 @@ function createPlatform() {
     // platformTop.insertPlatform()
     platformLocal.insertPlatform()
     platforms.push(platformLocal)
-    console.log(platforms)
     // platforms.push(platformTop)
-    platformLocal.shouldScroll = false
+    platformLocal.shouldScroll = true
     shouldCreatePlatform = false
 }
 
@@ -103,15 +105,14 @@ function scrollStatus() {
 }
 //Evento que inicia el juego
 startButton.addEventListener("click",function(e){
-    pantallaInicial.removeChild(e.currentTarget)
-    board.removeChild(pantallaInicial)
+    pantalla.removeChild(e.currentTarget)
+    board.removeChild(pantalla)
     start() 
 })
 
 //Funcion para borrar plataformas
 function deletePlatfoms(){
     platforms.forEach(function(plataforma){
-        console.log(plataforma)
         plataforma.sprite.parentNode.removeChild(plataforma.sprite)
     })
 }
@@ -119,19 +120,38 @@ function deletePlatfoms(){
 
 //Funcion Game Over
 function gameOver(){
-    deletePlatfoms()
-    pantallaInicial.setAttribute("id","game-over")
-    board.appendChild(pantallaInicial)
+    console.log("game over")
     clearInterval(timerId)
+    if(platforms.length > 0){
+    deletePlatfoms()
+    }
     board.removeChild(player.sprite)
+    pantalla.setAttribute("id","game-over")
+    board.appendChild(pantalla)
+    startButton.setAttribute("id","reset-button")
+    startButton.innerText = "Restart"
+    pantalla.appendChild(startButton)
 }
 
+//Funcion Restart
+function restart(){
+    player.x = 225
+    player.y = 450
+    platform.x = 150
+    platform.y = 550
+    platform2.x = 250
+    platform2.y = 200
+    player.isDead = false
+    platforms = [platform, platform2]
+    shouldCreatePlatform = true
+}
 //Función que comienza el juego
 function start() {
+    restart()
     player.insertPlayer()
     platform.insertPlatform()
     platform2.insertPlatform()
-    timerId = setInterval(gameLoop, 16)
+    timerId = setInterval(gameLoop, 32)
 }
 //start()
 
