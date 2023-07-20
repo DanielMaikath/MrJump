@@ -21,7 +21,6 @@ function Platform(x, y, parent, player) {
   //Función que checkea las colisiones de la plataforma con el jugador
   this.checkCollitions = function () {
     if (
-      this.y + this.height >= player.y &&
       this.y <= player.y + player.height &&
       this.x + this.width >= player.x &&
       this.x <= player.x + player.width &&

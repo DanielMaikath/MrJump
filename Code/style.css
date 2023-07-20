@@ -2,20 +2,26 @@
     width: 500px;
     height: 800px;
     position: relative;
-    background-color: black;
+    background-image: url("images/537376c3abe34a9a9426bfbb1bb77387.gif") ;
+    background-size: cover;
+    background-repeat: no-repeat;
     margin: auto;
 }
 #player{
     width: 50px;
     height: 50px;
     position: absolute;
-    background-color: blue;
+    background-image: url("images/d6vpunv-31251b65-1bae-4106-845d-94839c043f8a.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .platform{
     width: 100px;
     height: 25px;
-    background-color: red ;
+    background-image: url("images/image.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     position: absolute;
 }
 #pantalla-inicial{
