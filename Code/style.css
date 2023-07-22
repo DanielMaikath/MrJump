@@ -59,17 +59,23 @@
 }
 
 #score-game-over{
-    color: blue;
-    font-size:xx-large;
+    color: rgb(235, 13, 13);
+    font-size: 350%;
     text-align: center;
-    width: 200px;
-    height: 100px;
-    margin : 250px 0 0 150px;
+    width: 190px;
+    margin : 20px 0 0 150px;
     position: absolute;
-    border: 1px solid red;
+    
     padding-top: 50px;
 
-    
+}
 
+#music{
+    position:absolute;
+    margin-left: 21%;
+    background-color: brown ;
+    opacity: 45%;
+    height: 20px;
+    
     
 }
