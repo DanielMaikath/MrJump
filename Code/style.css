@@ -14,6 +14,7 @@
     background-image: url("images/d6vpunv-31251b65-1bae-4106-845d-94839c043f8a.png");
     background-size: cover;
     background-repeat: no-repeat;
+    border: solid 1px red;
 }
 
 .platform{
@@ -62,10 +63,9 @@
     color: rgb(235, 13, 13);
     font-size: 350%;
     text-align: center;
-    width: 190px;
-    margin : 20px 0 0 150px;
+    width: 300px;
+    margin : 20px 0 0 100px;
     position: absolute;
-    
     padding-top: 50px;
 
 }
@@ -82,3 +82,10 @@
     top: 200px;
 }
 
+#froakie{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top : 525px;
+    left : 150px;
+}

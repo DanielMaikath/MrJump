@@ -7,6 +7,7 @@ const platform2 = new Platform(250, 200, board, player)
 const startButton = document.getElementById("start")
 const pantalla = document.getElementById("pantalla-inicial")
 const title = document.getElementById("title")
+const froakie = document.getElementById("froakie")
 let platforms = [platform, platform2]
 let timerId //Variable global que almacena el id del intervalo
 var shouldCreatePlatform = true
@@ -45,11 +46,14 @@ window.addEventListener("keyup", function (e) {
 
 //Función que se repite indefinidamente, con 
 function gameLoop() {
+    console.log(platforms)
     if(player.isDead){
        gameOver()
        soundGame.pause()
        soundGameOver.play()
-       
+    }
+    if(platforms[0].y >= 800){
+        platforms.shift()
     }
     player.move()
     if (platformCollition()) { 
@@ -61,19 +65,19 @@ function gameLoop() {
     }  */ 
     if (player.y <= 400 ) {
         platformScroll()
-        scrollStatus()
         shouldCreatePlatform = true
+        scrollStatus()
     } 
-    if (player.y > 400 ) {
+    if (player.y > 400 ) { //Para el scroll de plataformas al bajar de la mitad de la pantalla
         stopPlatformScroll()
     } 
-    if (platforms[platforms.length-1].y > 250) {
+    if (platforms[platforms.length-1].y > 250) { //Una vez la ultima plataforma generada supere los 250px genera una nueva
         if(shouldCreatePlatform ){
             createPlatform()
         }
         scrollStatus()
     }
-    if (player.y <= 0 && player.speedY > 0 && top) {
+   /*  if (player.y <= 0 && player.speedY > 0 && top) {
         scrollStatus()
         createPlatform()
         platformScroll()
@@ -81,7 +85,7 @@ function gameLoop() {
     }
     if (player.speedY < 0) {
         top = true
-    }
+    } */
     scoreBoard.innerText = score++
     
     
@@ -122,9 +126,10 @@ function platformCollition() {
 //Funcion que haga scroll de todas las plataformas
 function platformScroll() {
     platforms.forEach(function (plataforma) {
-        if (plataforma.scroll()) {
-            platforms.shift()
-        }
+        plataforma.scroll()
+        
+        
+  
 
     })
 }
@@ -151,6 +156,7 @@ startButton.addEventListener("click",function(e){
     console.log(title)
     pantalla.removeChild(e.currentTarget)
     pantalla.removeChild(title)
+    pantalla.removeChild(froakie)
     board.removeChild(pantalla)
     scoreBoard.setAttribute("id", "score-board")
     board.appendChild(scoreBoard)
@@ -175,6 +181,7 @@ function gameOver(){
     console.log("game over")
     clearInterval(timerId)
     if(platforms.length > 0){
+    console.log(platforms)
     deletePlatfoms()
     }
     board.removeChild(player.sprite)
@@ -182,9 +189,10 @@ function gameOver(){
     board.appendChild(pantalla)
     pantalla.appendChild(title)
     title.setAttribute("id","score-game-over")
+    title.innerText = `Your score ${score}`
     startButton.setAttribute("id","reset-button")
     startButton.innerText = "Restart"
-    scoreBoard.setAttribute("id", "score-game-over")
+    board.removeChild(scoreBoard)
     pantalla.appendChild(startButton)
 }
 
