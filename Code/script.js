@@ -16,6 +16,7 @@ let top = false
 let soundStart = new Audio('music/musicStart.mp3')
 soundStart.play()
 let soundGame = new Audio('music/musicGame.mp3')
+soundGame.volume = 0.15
 let soundGameOver = new Audio('music/musicGameOver.mp3')
 let sounJump = new Audio('music/soundJump.mp3')
 
