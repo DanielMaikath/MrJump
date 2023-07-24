@@ -17,7 +17,7 @@
 }
 
 .platform{
-    width: 100px;
+    width: 75px;
     height: 25px;
     background-image: url("images/image.png");
     background-size: cover;
@@ -70,3 +70,14 @@
 
 }
 
+#title{
+    height: 75px;
+    border: solid 1px;
+    width: 250px;
+    color: blue;
+    text-align: center;
+    position: absolute;
+    font-size: xx-large;
+    left: 125px;
+    top: 200px;
+}
