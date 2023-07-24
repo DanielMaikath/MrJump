@@ -13,6 +13,13 @@ let score = 0
 let scoreBoard = document.createElement("div")
 let top = false
 
+let soundStart = new Audio('music/musicStart.mp3')
+soundStart.play()
+let soundGame = new Audio('music/musicGame.mp3')
+let soundGameOver = new Audio('music/musicGameOver.mp3')
+let sounJump = new Audio('music/soundJump.mp3')
+
+
 //Función que recoge el evento para mover al jugador horizontalmente, mediante las flechas izquierda y derecha
 window.addEventListener("keydown", function (e) {
     switch (e.key) {
@@ -35,10 +42,14 @@ window.addEventListener("keyup", function (e) {
 function gameLoop() {
     if(player.isDead){
        gameOver()
+       soundGame.pause()
+       soundGameOver.play()
+       
     }
     player.move()
     if (platformCollition()) { 
         player.collition = true
+        sounJump.play()
     }
     /* if(player.y <= 100){
         player.playerIsOnTop = true
@@ -63,6 +74,8 @@ function gameLoop() {
         top = true
     }
     scoreBoard.innerText = score++
+    
+    
 }
 
 function createPlatform() {
@@ -88,7 +101,7 @@ function platformCollition() {
         arr.push(plataforma.checkCollitions())
     })
     return arr.includes(true)
-
+    
 
 
 
@@ -119,10 +132,13 @@ function scrollStatus() {
 startButton.addEventListener("click",function(e){
     pantalla.removeChild(e.currentTarget)
     board.removeChild(pantalla)
-    
     scoreBoard.setAttribute("id", "score-board")
     board.appendChild(scoreBoard)
-
+    soundStart.pause()
+    soundGame.play()
+    soundGameOver.currentTime = 0
+    
+    
     start() 
 })
 
@@ -162,6 +178,9 @@ function restart(){
     platforms = [platform, platform2]
     shouldCreatePlatform = true
     score = 0
+    soundGame.currentTime = 0
+    
+    
 }
 //Función que comienza el juego
 function start() {
@@ -170,6 +189,8 @@ function start() {
     platform.insertPlatform()
     platform2.insertPlatform()
     timerId = setInterval(gameLoop, 32)
+    soundGameOver.pause()
+    soundStart.currentTime = 0
 }
 //start()
 
