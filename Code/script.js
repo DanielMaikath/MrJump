@@ -21,7 +21,7 @@ soundStart.play()
 let soundGame = new Audio('music/musicGame.mp3')
 soundGame.volume = 0.15
 let soundGameOver = new Audio('music/musicGameOver.mp3')
-soundGameOver.volume = 0.3
+soundGameOver.volume = 0.05
 let sounJump = new Audio('music/soundJump.mp3')
 
 
@@ -61,9 +61,13 @@ function gameLoop() {
     }  */ 
     if (player.y <= 400 ) {
         platformScroll()
+        scrollStatus()
         shouldCreatePlatform = true
     } 
-    if (player.y > 400) {
+    if (player.y > 400 ) {
+        stopPlatformScroll()
+    } 
+    if (platforms[platforms.length-1].y > 250) {
         if(shouldCreatePlatform ){
             createPlatform()
         }
@@ -125,6 +129,15 @@ function platformScroll() {
     })
 }
 
+//Funcion que haga scroll de todas las plataformas
+function stopPlatformScroll() {
+    platforms.forEach(function (plataforma) {
+            plataforma.stopScroll()
+        
+
+    })
+}
+
 
 
 //Funcion que cambie los ShouldScroll a true
@@ -168,7 +181,7 @@ function gameOver(){
     pantalla.setAttribute("id","game-over")
     board.appendChild(pantalla)
     pantalla.appendChild(title)
-    title.setAttribute("id","score-message")
+    title.setAttribute("id","score-game-over")
     startButton.setAttribute("id","reset-button")
     startButton.innerText = "Restart"
     scoreBoard.setAttribute("id", "score-game-over")

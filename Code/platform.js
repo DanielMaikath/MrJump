@@ -9,6 +9,8 @@ function Platform(x, y, parent, player) {
   this.width = 75
   this.shouldScroll = true
   this.sprite = document.createElement("div")
+  this.timerId = null
+  this.scrolling = false
 
   //Función que inserta la plataforma en el DOM
   this.insertPlatform = function () {
@@ -33,23 +35,32 @@ function Platform(x, y, parent, player) {
   }
 
   this.scroll = function () { // Función que se encarga de scrollear la pantalla
-    if (self.shouldScroll) {
-      self.y = self.y + 250
-      self.sprite.style.top = self.y + 'px'
-      self.shouldScroll = false
+    if (self.shouldScroll && !self.scrolling) {
+      this.timerId = setInterval(function(){
+        self.y = self.y + 10
+        self.sprite.style.top = self.y + 'px'
+        self.scrolling = true
+        if (self.y >= 800) {
+          parent.removeChild(self.sprite)
+        }
+      },30)
     } 
-     if (player.playerIsOnTop){
+   /*   if (player.playerIsOnTop){
       self.y = self.y + 75
      self.sprite.style.top = self.y + 'px'
      player.playerIsOnTop = false
-     } 
-    if (self.y >= 800) {
-      parent.removeChild(self.sprite)
-      return true
-    }else{
-      return false
-    }
+     }  */
+    
   }
+
+  this.stopScroll = function(){
+    clearInterval(this.timerId)
+    this.shouldScroll = false
+
+
+  }
+
+
 }
 
 
