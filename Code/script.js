@@ -6,6 +6,7 @@ const platform = new Platform(150, 550, board, player)
 const platform2 = new Platform(250, 200, board, player)
 const startButton = document.getElementById("start")
 const pantalla = document.getElementById("pantalla-inicial")
+const title = document.getElementById("title")
 let platforms = [platform, platform2]
 let timerId //Variable global que almacena el id del intervalo
 var shouldCreatePlatform = true
@@ -13,11 +14,14 @@ let score = 0
 let scoreBoard = document.createElement("div")
 let top = false
 
+
 let soundStart = new Audio('music/musicStart.mp3')
+soundStart.volume = 0.5
 soundStart.play()
 let soundGame = new Audio('music/musicGame.mp3')
 soundGame.volume = 0.15
 let soundGameOver = new Audio('music/musicGameOver.mp3')
+soundGameOver.volume = 0.3
 let sounJump = new Audio('music/soundJump.mp3')
 
 
@@ -80,7 +84,7 @@ function gameLoop() {
 }
 
 function createPlatform() {
-    let cordX = Math.floor(Math.random() * 400)
+    let cordX = Math.floor(Math.random() * 425)
     let cordY = Math.floor(Math.random() * (0) )
     // let cordXTop = Math.floor(Math.random() * 400)
     // let cordYTop = Math.floor(Math.random() * (100)  )
@@ -131,7 +135,9 @@ function scrollStatus() {
 }
 //Evento que inicia el juego
 startButton.addEventListener("click",function(e){
+    console.log(title)
     pantalla.removeChild(e.currentTarget)
+    pantalla.removeChild(title)
     board.removeChild(pantalla)
     scoreBoard.setAttribute("id", "score-board")
     board.appendChild(scoreBoard)
@@ -161,6 +167,8 @@ function gameOver(){
     board.removeChild(player.sprite)
     pantalla.setAttribute("id","game-over")
     board.appendChild(pantalla)
+    pantalla.appendChild(title)
+    title.setAttribute("id","score-message")
     startButton.setAttribute("id","reset-button")
     startButton.innerText = "Restart"
     scoreBoard.setAttribute("id", "score-game-over")

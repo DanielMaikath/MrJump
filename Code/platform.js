@@ -6,7 +6,7 @@ function Platform(x, y, parent, player) {
   this.y = y;
   this.direction = 0 //Dirección en la que se mueve horizontalmente , +1 es a la derecha y -1 es a la izquierda
   this.height = 25
-  this.width = 100
+  this.width = 75
   this.shouldScroll = true
   this.sprite = document.createElement("div")
 
@@ -39,7 +39,7 @@ function Platform(x, y, parent, player) {
       self.shouldScroll = false
     } 
      if (player.playerIsOnTop){
-      self.y = self.y + 100
+      self.y = self.y + 75
      self.sprite.style.top = self.y + 'px'
      player.playerIsOnTop = false
      } 
