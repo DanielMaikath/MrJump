@@ -103,3 +103,13 @@
     top : 525px;
     left : 150px;
 }
+
+.coin{
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    background-image: url("images/pngwing.com.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+}

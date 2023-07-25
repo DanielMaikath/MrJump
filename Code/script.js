@@ -1,8 +1,9 @@
 import { Player } from "./player.js"
 import { Platform } from "./platform.js"
+import { Coin } from "./coin.js"
 const board = document.getElementById("board")
-const player = new Player(225, 450, board)
-const platform = new Platform(150, 550, board, player)
+const player = new Player(225, 400, board)
+const platform = new Platform(200, 550, board, player)
 const platform2 = new Platform(250, 200, board, player)
 const startButton = document.getElementById("start")
 const pantalla = document.getElementById("pantalla-inicial")
@@ -12,12 +13,15 @@ let sadFroakie = document.createElement("img")
 sadFroakie.setAttribute("src","images/kisspng-stuffed-animals-cuddly-toys-jan-25-2017-plush-f-boke-5b2de366a66c27.0354764415297339906817.png")
 sadFroakie.setAttribute("id","sad-froakie")
 let platforms = [platform, platform2]
+let coins = [new Coin(200,400,board,player,platforms)]
 let timerId //Variable global que almacena el id del intervalo
 var shouldCreatePlatform = true
+let shouldCreateCoin = true
 let score = 0
 let scoreBoard = document.createElement("div")
 let firstExecution = true
 let top = false
+let coinCount = 1;
 
 
 
@@ -51,7 +55,7 @@ window.addEventListener("keyup", function (e) {
 
 //Función que se repite indefinidamente, con 
 function gameLoop() {
-    console.log(platforms)
+    
     if(player.isDead){
        gameOver()
        soundGame.pause()
@@ -60,28 +64,47 @@ function gameLoop() {
     if(platforms[0].y >= 775){
         platforms.shift()
     }
+    
+    if(coins[0].y >= 775  ){
+        coins.shift()
+    } 
     player.move()
     if (platformCollition()) { 
         player.collition = true
         sounJump.play()
     }
+    if(coinCollition()){
+        score += 50
+        scoreBoard.innerText = score
+    } 
     /* if(player.y <= 100){
         player.playerIsOnTop = true
     }  */ 
     if (player.y <= 400 ) {
         platformScroll()
+        coinScroll()
         shouldCreatePlatform = true
         scrollStatus()
+        scrollStatusCoins()
+        shouldCreateCoin = true 
     } 
     if (player.y > 400 ) { //Para el scroll de plataformas al bajar de la mitad de la pantalla
         stopPlatformScroll()
+        stopCoinScroll() 
     } 
+    if (coins[coins.length-1].y > 250) { //Una vez la ultima plataforma generada supere los 250px genera una nueva
+        if(shouldCreateCoin ){
+            createCoin()
+        }
+        scrollStatusCoins()
+    }
     if (platforms[platforms.length-1].y > 250) { //Una vez la ultima plataforma generada supere los 250px genera una nueva
         if(shouldCreatePlatform ){
             createPlatform()
         }
         scrollStatus()
     }
+    
    /*  if (player.y <= 0 && player.speedY > 0 && top) {
         scrollStatus()
         createPlatform()
@@ -111,6 +134,15 @@ function createPlatform() {
     shouldCreatePlatform = false
 }
 
+function createCoin(){
+    let cordX = Math.floor(Math.random() * 425)
+    let cordY = -50
+    let localCoin = new Coin(cordX,cordY,board,player,platforms)
+    localCoin.insertCoin()
+    coins.push(localCoin)
+    localCoin.shouldScroll = true
+    shouldCreateCoin = true
+}
 
 //Funcion colisiones de las plataformas
 function platformCollition() {
@@ -119,10 +151,6 @@ function platformCollition() {
         arr.push(plataforma.checkCollitions())
     })
     return arr.includes(true)
-    
-
-
-
 }
 
 
@@ -156,6 +184,51 @@ function scrollStatus() {
         plataforma.shouldScroll = true
     })
 }
+
+function coinCollition() {
+    let arr = []
+    coins.forEach(function (moneda) {
+        arr.push(moneda.checkCollitions())
+    })
+    return arr.includes(true)
+}
+
+//Funcion que haga scroll de todas las plataformas
+function coinScroll() {
+    coins.forEach(function (moneda) {
+        moneda.scroll()
+        
+        
+  
+
+    })
+}
+
+//Funcion que haga scroll de todas las plataformas
+function stopCoinScroll() {
+    coins.forEach(function (moneda) {
+        if(moneda && !moneda.removed){
+            moneda.stopScroll()
+    }
+
+    })
+}
+
+
+
+//Funcion que cambie los ShouldScroll a true
+function scrollStatusCoins() {
+    coins.forEach(function (moneda) {
+        moneda.shouldScroll = true
+    })
+}
+function deleteCoins(){
+    coins.forEach(function (moneda) {
+        if(!moneda.removed){
+        moneda.sprite.parentNode.removeChild(moneda.sprite)
+    }
+    })
+}
 //Evento que inicia el juego
 startButton.addEventListener("click",function(e){
     pantalla.removeChild(e.currentTarget)
@@ -182,14 +255,16 @@ function deletePlatfoms(){
     })
 }
 
+    
 
 //Funcion Game Over
 function gameOver(){
-    console.log("game over")
     clearInterval(timerId)
     if(platforms.length > 0){
-    console.log(platforms)
-    deletePlatfoms()
+        deletePlatfoms()
+    }
+    if(coins.length > 0){
+        deleteCoins()
     }
     board.removeChild(player.sprite)
     pantalla.setAttribute("id","game-over")
@@ -206,14 +281,17 @@ function gameOver(){
 
 //Funcion Restart
 function restart(){
-    platform.x = 150
+    platform.x = 200
     platform.y = 550
     platform2.x = 250
     platform2.y = 250
     player.x = 225
-    player.y = 450
+    player.y = 400
     player.isDead = false
+    platform.removed = false
+    platform2.removed = false
     platforms = [platform, platform2]
+    coins = [new Coin(200,400,board,player,platforms)]
     shouldCreatePlatform = true
     score = 0
     soundGame.currentTime = 0
@@ -223,8 +301,10 @@ function restart(){
 //Función que comienza el juego
 function start() {
     restart()
+    console.log("funcioonas")
     platform.insertPlatform()
     platform2.insertPlatform()
+    coins[0].insertCoin()
     player.insertPlayer()
     timerId = setInterval(gameLoop, 32)
     soundGameOver.pause()
