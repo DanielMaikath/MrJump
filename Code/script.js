@@ -13,6 +13,7 @@ let timerId //Variable global que almacena el id del intervalo
 var shouldCreatePlatform = true
 let score = 0
 let scoreBoard = document.createElement("div")
+let firstExecution = true
 let top = false
 
 
@@ -52,7 +53,7 @@ function gameLoop() {
        soundGame.pause()
        soundGameOver.play()
     }
-    if(platforms[0].y >= 800){
+    if(platforms[0].y >= 775){
         platforms.shift()
     }
     player.move()
@@ -153,10 +154,12 @@ function scrollStatus() {
 }
 //Evento que inicia el juego
 startButton.addEventListener("click",function(e){
-    console.log(title)
     pantalla.removeChild(e.currentTarget)
     pantalla.removeChild(title)
+    if(firstExecution){
     pantalla.removeChild(froakie)
+    firstExecution = false
+    }
     board.removeChild(pantalla)
     scoreBoard.setAttribute("id", "score-board")
     board.appendChild(scoreBoard)
@@ -198,12 +201,12 @@ function gameOver(){
 
 //Funcion Restart
 function restart(){
-    player.x = 225
-    player.y = 450
     platform.x = 150
     platform.y = 550
     platform2.x = 250
-    platform2.y = 200
+    platform2.y = 250
+    player.x = 225
+    player.y = 450
     player.isDead = false
     platforms = [platform, platform2]
     shouldCreatePlatform = true
@@ -215,9 +218,9 @@ function restart(){
 //Función que comienza el juego
 function start() {
     restart()
-    player.insertPlayer()
     platform.insertPlatform()
     platform2.insertPlatform()
+    player.insertPlayer()
     timerId = setInterval(gameLoop, 32)
     soundGameOver.pause()
     soundStart.currentTime = 0

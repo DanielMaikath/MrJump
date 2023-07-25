@@ -12,7 +12,7 @@
     height: 50px;
     position: absolute;
     background-image: url("images/d6vpunv-31251b65-1bae-4106-845d-94839c043f8a.png");
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     border: solid 1px red;
 }
@@ -40,7 +40,7 @@
 #game-over{
     width: 500px;
     height: 800px;
-    background-image: url("images/HD-wallpaper-game-over-2-3d-art-black-effect-glitch-glitchart-pink-white.jpg");
+    background-image: url("images/Y7z2es.png");
     background-size:cover;
     background-repeat: no-repeat;
 }

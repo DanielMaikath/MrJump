@@ -25,6 +25,7 @@ function Platform(x, y, parent, player) {
   this.checkCollitions = function () {
     if (
       this.y <= player.y + player.height &&
+      this.y >= player.y &&
       this.x + this.width >= player.x &&
       this.x <= player.x + player.width &&
       player.speedY < 0
@@ -41,7 +42,7 @@ function Platform(x, y, parent, player) {
       self.timerId = setInterval(function(){
         self.y = self.y + 10
         self.sprite.style.top = self.y + 'px'
-        if (self.y >= 800 && !self.removed) {
+        if (self.y >= 775 && !self.removed) {
           parent.removeChild(self.sprite)
           self.removed = true
         }

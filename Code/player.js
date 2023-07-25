@@ -7,8 +7,8 @@ function Player(x, y, parent) {
   this.direction = 0
   this.height = 50
   this.width = 50
-  this.speedX = 10//Velocidad a la que se mueve el jugador horizontalmente en pixeles
-  this.speedY = 30//Velocidad a la que se mueve el jugador verticalmente en pixeles
+  this.speedX = 12//Velocidad a la que se mueve el jugador horizontalmente en pixeles
+  this.speedY = 32//Velocidad a la que se mueve el jugador verticalmente en pixeles
   this.collition = false // Variable que detecta si el jugador colisiona con la plataforma
   this.playerIsOnTop = false
   this.isDead = false //Variable que controla si el player se estampó
@@ -27,11 +27,11 @@ function Player(x, y, parent) {
       self.sprite.style.left = self.x + 'px'
     }
     //Esta es la parte del movimiento vertical
-    if (self.y >= 750) { //toca el suelo
+    if (self.y >= 800) { //toca el suelo
       self.isDead = true
     }
     if (self.collition == true) { //toca la plataforma
-      self.speedY = 30
+      self.speedY = 32
       self.collition = false
     }
 
