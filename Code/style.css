@@ -14,7 +14,6 @@
     background-image: url("images/d6vpunv-31251b65-1bae-4106-845d-94839c043f8a.png");
     background-size: contain;
     background-repeat: no-repeat;
-    border: solid 1px red;
 }
 
 .platform{
@@ -24,6 +23,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
+    border-radius: 15px;
 }
 #pantalla-inicial{
     width: 500px;
@@ -35,7 +35,9 @@
 #start{
     width: 100px;
     height: 50px;
-    margin : 350px 0 0 200px 
+    margin : 350px 0 0 200px ;
+    border-radius: 15px;
+    background-color: rgba(0, 255, 255, 0.666);
 }
 #game-over{
     width: 500px;
@@ -47,7 +49,9 @@
 #reset-button{
     width: 100px;
     height: 50px;
-    margin : 350px 0 0 200px 
+    margin : 350px 0 0 200px ;
+    border-radius: 15px;
+    background-color: rgba(0, 255, 255, 0.666);
 }
 
 #score-board{
@@ -60,8 +64,8 @@
 }
 
 #score-game-over{
-    color: rgb(235, 13, 13);
-    font-size: 350%;
+    color: pink;
+    font-size: 400%;
     text-align: center;
     width: 300px;
     margin : 20px 0 0 100px;
@@ -73,16 +77,26 @@
 #title{
     height: 75px;
     border: solid 1px;
-    width: 250px;
-    color: blue;
+    width: 400px;
+    color: pink;
+    background: linear-gradient(0deg, rgb(6, 1, 101) 0%, rgba(9,9,121,1) 36%, rgba(0,212,255,1) 100%);
     text-align: center;
     position: absolute;
-    font-size: xx-large;
-    left: 125px;
-    top: 200px;
+    font-size: 500%;
+    left: 50px;
+    top: 75px;
+    padding-bottom: 10px;
+    border-radius: 15px;
 }
 
 #froakie{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top : 525px;
+    left : 150px;
+}
+#sad-froakie{
     position: absolute;
     width: 200px;
     height: 200px;

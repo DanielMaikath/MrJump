@@ -8,6 +8,9 @@ const startButton = document.getElementById("start")
 const pantalla = document.getElementById("pantalla-inicial")
 const title = document.getElementById("title")
 const froakie = document.getElementById("froakie")
+let sadFroakie = document.createElement("img")
+sadFroakie.setAttribute("src","images/kisspng-stuffed-animals-cuddly-toys-jan-25-2017-plush-f-boke-5b2de366a66c27.0354764415297339906817.png")
+sadFroakie.setAttribute("id","sad-froakie")
 let platforms = [platform, platform2]
 let timerId //Variable global que almacena el id del intervalo
 var shouldCreatePlatform = true
@@ -15,6 +18,7 @@ let score = 0
 let scoreBoard = document.createElement("div")
 let firstExecution = true
 let top = false
+
 
 
 let soundStart = new Audio('music/musicStart.mp3')
@@ -195,6 +199,7 @@ function gameOver(){
     title.innerText = `Your score ${score}`
     startButton.setAttribute("id","reset-button")
     startButton.innerText = "Restart"
+    pantalla.appendChild(sadFroakie)
     board.removeChild(scoreBoard)
     pantalla.appendChild(startButton)
 }
