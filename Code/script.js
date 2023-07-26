@@ -33,7 +33,7 @@ soundGame.volume = 0.15
 let soundGameOver = new Audio('music/musicGameOver.mp3')
 soundGameOver.volume = 0.05
 let sounJump = new Audio('music/soundJump.mp3')
-
+let soundCoints = new Audio('music/coints.mp3')
 
 //Función que recoge el evento para mover al jugador horizontalmente, mediante las flechas izquierda y derecha
 window.addEventListener("keydown", function (e) {
@@ -76,6 +76,7 @@ function gameLoop() {
     if(coinCollition()){
         score += 50
         scoreBoard.innerText = score
+        soundCoints.play()
     } 
     /* if(player.y <= 100){
         player.playerIsOnTop = true
@@ -142,6 +143,7 @@ function createCoin(){
     coins.push(localCoin)
     localCoin.shouldScroll = true
     shouldCreateCoin = true
+    
 }
 
 //Funcion colisiones de las plataformas
