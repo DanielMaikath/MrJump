@@ -48,24 +48,24 @@ function Platform(x, y, parent, player) {
         }
       },30)
     } 
-   /*   if (player.playerIsOnTop){
-      self.y = self.y + 75
-     self.sprite.style.top = self.y + 'px'
-     player.playerIsOnTop = false
-     }  */
-    
+  
   }
 
   this.stopScroll = function(){
     clearInterval(this.timerId)
     this.shouldScroll = false
     this.scrolling = false
-
-  }
-
+ }
 
 }
 
-
-
 export { Platform }
+
+
+
+/*   if (player.playerIsOnTop){
+      self.y = self.y + 75
+     self.sprite.style.top = self.y + 'px'
+     player.playerIsOnTop = false
+     }  */
+    

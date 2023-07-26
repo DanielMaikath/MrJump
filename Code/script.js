@@ -298,7 +298,6 @@ function restart(){
     score = 0
     soundGame.currentTime = 0
     
-    
 }
 //Función que comienza el juego
 function start() {
