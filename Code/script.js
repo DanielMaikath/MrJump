@@ -10,7 +10,7 @@ const pantalla = document.getElementById("pantalla-inicial")
 const title = document.getElementById("title")
 const froakie = document.getElementById("froakie")
 let sadFroakie = document.createElement("img")
-sadFroakie.setAttribute("src","images/kisspng-stuffed-animals-cuddly-toys-jan-25-2017-plush-f-boke-5b2de366a66c27.0354764415297339906817.png")
+sadFroakie.setAttribute("src","Code/images/kisspng-stuffed-animals-cuddly-toys-jan-25-2017-plush-f-boke-5b2de366a66c27.0354764415297339906817.png")
 sadFroakie.setAttribute("id","sad-froakie")
 let platforms = [platform, platform2]
 let coins = [new Coin(200,400,board,player,platforms)]
@@ -25,15 +25,15 @@ let coinCount = 1;
 
 
 
-let soundStart = new Audio('music/musicStart.mp3')
+let soundStart = new Audio('Code/music/musicStart.mp3')
 soundStart.volume = 0.5
 soundStart.play()
-let soundGame = new Audio('music/musicGame.mp3')
+let soundGame = new Audio('Code/music/musicGame.mp3')
 soundGame.volume = 0.15
-let soundGameOver = new Audio('music/musicGameOver.mp3')
+let soundGameOver = new Audio('Code/music/musicGameOver.mp3')
 soundGameOver.volume = 0.05
-let sounJump = new Audio('music/soundJump.mp3')
-let soundCoints = new Audio('music/coints.mp3')
+let sounJump = new Audio('Code/music/soundJump.mp3')
+let soundCoints = new Audio('Code/music/coints.mp3')
 soundCoints.volume = 0.25
 
 //Función que recoge el evento para mover al jugador horizontalmente, mediante las flechas izquierda y derecha
