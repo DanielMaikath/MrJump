@@ -34,6 +34,7 @@ let soundGameOver = new Audio('music/musicGameOver.mp3')
 soundGameOver.volume = 0.05
 let sounJump = new Audio('music/soundJump.mp3')
 let soundCoints = new Audio('music/coints.mp3')
+soundCoints.volume = 0.25
 
 //Función que recoge el evento para mover al jugador horizontalmente, mediante las flechas izquierda y derecha
 window.addEventListener("keydown", function (e) {
